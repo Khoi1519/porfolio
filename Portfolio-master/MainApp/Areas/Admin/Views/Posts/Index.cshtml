@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BuildingBlocks.Data.Entities.Post>
+@{
+    ViewData["Title"] = "Post";
+}
+
+<h1>Post</h1>
+<table class="table" id="example">
+    <thead>
+    <tr>
+        <th>
+            Image
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Like)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{ var images = item.UrlImages.Split(','); }
+                @if (images.Any(x => !string.IsNullOrEmpty(x)))
+                {
+                    if (images[0].Contains("mp4"))
+                    {
+                    }
+                    else
+                    {
+                        <img src="~/images/@images[0]" class="post-image" width="50" height="50" alt="@item.Title">
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Like)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Username)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-postId="@item.Id" asp-controller="Posts" asp-area="Admin">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
