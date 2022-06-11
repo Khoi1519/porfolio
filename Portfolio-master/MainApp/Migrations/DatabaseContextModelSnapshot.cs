@@ -235,9 +235,9 @@ namespace MainApp.Migrations
                             AboutMe = "No thing",
                             Address = "Địa chỉ",
                             Avatar = "",
-                            CreatedAt = new DateTime(2022, 5, 28, 0, 50, 17, 620, DateTimeKind.Local).AddTicks(5659),
+                            CreatedAt = new DateTime(2022, 6, 11, 20, 16, 58, 448, DateTimeKind.Local).AddTicks(3991),
                             Email = "admin@yobmail.com",
-                            Password = "AQAAAAEAACcQAAAAEGaJKPczfKh7ZrNzJF4sGzKycxvj7cZa9fATFhokpyZEo659I3HGmtFpNPYTKc/FMA==",
+                            Password = "AQAAAAEAACcQAAAAEK9iegd7wxRTllwchEwWxJo2/hjLVJvsRbfkQbzu0SEG7gktxxvcQ4OGbJHIrjF5qQ==",
                             Phone = "0982456789",
                             Role = 1,
                             Status = 1,
@@ -249,9 +249,9 @@ namespace MainApp.Migrations
                             AboutMe = "No thing",
                             Address = "Địa chỉ",
                             Avatar = "",
-                            CreatedAt = new DateTime(2022, 5, 28, 0, 50, 17, 628, DateTimeKind.Local).AddTicks(6134),
+                            CreatedAt = new DateTime(2022, 6, 11, 20, 16, 58, 456, DateTimeKind.Local).AddTicks(2365),
                             Email = "user@yobmail.com",
-                            Password = "AQAAAAEAACcQAAAAEFyAdehnt55DW4kGj5/TfVwGWH3vLUWSxXMZvZCpmqChAE1nE8UeSvuBklgbKdWeEw==",
+                            Password = "AQAAAAEAACcQAAAAEPr06wgRgXpfUIPKbbFd1MHK/1nv4fshMYD+28mFliJDcY4NQXnBi6hnNPwhbUuHxA==",
                             Phone = "0982456799",
                             Role = 2,
                             Status = 1,
@@ -269,6 +269,9 @@ namespace MainApp.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("GitUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");

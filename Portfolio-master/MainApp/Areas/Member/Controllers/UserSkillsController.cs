@@ -70,6 +70,7 @@ public class UserSkillsController : ApiBaseController
                 ShortTitle = userSkillModel.ShortTitle,
                 TitleProject = userSkillModel.TitleProject,
                 UserId = User.GetId(),
+                GitUrl = userSkillModel.GitUrl,
                 CreatedAt = DateTime.Now
             };
 
@@ -130,6 +131,7 @@ public class UserSkillsController : ApiBaseController
             userSkill.Time = userSkillModel.Time;
             userSkill.ShortTitle = userSkillModel.ShortTitle;
             userSkill.TitleProject = userSkillModel.TitleProject;
+            userSkill.GitUrl = userSkillModel.GitUrl;
             userSkill.Project = string.IsNullOrEmpty(images) ? userSkill.Project : images;
 
             _databaseContext.UserSkills.Update(userSkill);
@@ -169,11 +171,13 @@ public class UserSkillsController : ApiBaseController
     public async Task<IActionResult> IndexSearch()
     {
         string username = HttpContext.Request.Form["username"];
-        var user = await _databaseContext.Users.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(username.ToLower()));
+        var user = await _databaseContext.Users.FirstOrDefaultAsync(
+            x => x.Username.ToLower().Equals(username.ToLower()));
         if (user == null)
         {
-            return View(new FindUserSkillModel()); 
+            return View(new FindUserSkillModel());
         }
+
         var userSkills = await _databaseContext.UserSkills.Where(x => x.UserId == user.Id).ToListAsync();
         var posts = await _databaseContext.Posts.Where(x => x.UserId == user.Id).ToListAsync();
         return View(new FindUserSkillModel

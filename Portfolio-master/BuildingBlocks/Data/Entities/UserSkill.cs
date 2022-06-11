@@ -9,6 +9,7 @@
         public string Project { get; set; }
         public string Time { get; set; }
         public string TitleProject { get; set; }
+        public string GitUrl { get; set; }
 
         public string ShortTitle { get; set; }
         public DateTime CreatedAt { get; set; }

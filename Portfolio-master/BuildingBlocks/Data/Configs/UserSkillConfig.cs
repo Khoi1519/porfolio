@@ -18,6 +18,7 @@ public class UserSkillConfig : IEntityTypeConfiguration<UserSkill>
         builder.Property(x => x.Time).IsRequired(false);
         builder.Property(x => x.TitleProject).IsRequired(false);
         builder.Property(x => x.ShortTitle).IsRequired(false);
+        builder.Property(x => x.GitUrl).IsRequired(false);
         builder.Property(x => x.UserId).IsRequired();
         builder.Property(x => x.CreatedAt).IsRequired();
 

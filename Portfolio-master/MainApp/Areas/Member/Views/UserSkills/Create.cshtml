@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
-                    <label asp-for="Images" class="control-label"></label>
+                        <label asp-for="Images" class="control-label"></label>
                         <input asp-for="Images" class="custom-file-input" id="customFile" type="file" multiple>
                     </div>
                     <span asp-validation-for="Images" class="text-danger"></span>
@@ -47,6 +47,11 @@
                     <label asp-for="ShortTitle" class="control-label"></label>
                     <input asp-for="ShortTitle" class="form-control"/>
                     <span asp-validation-for="ShortTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GitUrl" class="control-label"></label>
+                    <input asp-for="GitUrl" class="form-control"/>
+                    <span asp-validation-for="GitUrl" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="form-submit-btn">Add</button>

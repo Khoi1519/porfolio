@@ -33,6 +33,7 @@ public class UsersController : ApiBaseController
         {
             Id = user.Id,
             Username = user.Username,
+            Password = user.Password,
             Avatar = user.Avatar,
             Email = user.Email,
             Phone = user.Phone,
@@ -64,7 +65,8 @@ public class UsersController : ApiBaseController
             user.Address = userModels.Address;
             user.Avatar = string.IsNullOrEmpty(images) ? user.Avatar : images;
             userModels.Avatar = user.Avatar;
-
+            _databaseContext.Users.Update(user);
+            await _databaseContext.SaveChangesAsync();
 
             await HttpContext.SignOutAsync();
             var principal = new ClaimsPrincipal(
@@ -87,8 +89,23 @@ public class UsersController : ApiBaseController
 
             await HttpContext.SignInAsync(principal);
 
-            _databaseContext.Users.Update(user);
-            await _databaseContext.SaveChangesAsync();
+            user = await _databaseContext.Users.FindAsync(id);
+            if (user != null)
+            {
+                userModels = new UserModels
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                    Avatar = user.Avatar,
+                    Email = user.Email,
+                    Phone = user.Phone,
+                    AboutMe = user.AboutMe,
+                    Address = user.Address,
+                    Status = user.Status,
+                    CreatedAt = user.CreatedAt
+                };
+            }
+
 
             return View(userModels);
         }
